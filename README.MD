@@ -6,6 +6,12 @@ The k8s folder contains a follow k8s object
 - a service for the simple site
 - a ingress so that the website is acccessable via the website name
 
+
+To install setup the sample
+```bash 
+k apply ./k8s/deployment.yaml
+```
+
 First run this script will do a curl to the site with a short url. A 200 is expected
 ```bash
 SITE="<SET LOADBALANCER URL>" # im my case it http://xxxx.eu-west-1.elb.amazonaws.com
