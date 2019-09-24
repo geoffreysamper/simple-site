@@ -4,7 +4,7 @@ Contains a simple site to be used for playing with k8s.
 The k8s folder contains a follow k8s object
 - a deployment for simple site 
 - a service for the simple site
-- a ingress so that the website is acccessable via the website name
+- a ingress so that the website is accessible via the nginx ingress controller
 
 
 To install setup the sample
