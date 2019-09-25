@@ -1,2 +1,5 @@
 test2.sh
+test_longurl_ignore.sh
+test_graphql.sh
 node_modules/
+nginx_template/
