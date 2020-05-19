@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: geoffreysamper/simple-site:3.0
+        image: geoffreysamper/simple-site:15.0
         ports:
         - containerPort: 5000
 ---
@@ -30,27 +30,31 @@ metadata:
     app: simple-site
   annotations:
 spec:
+  type: NodePort
   selector:
       app: simple-site
   ports:
     - name: http
-      port: 5000
+      port: 80
       targetPort: 5000
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  name: simple-site-ingress
+  namespace: "test"
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/subnets: subnet-a4f0098e,subnet-457ed533,subnet-95c904cd
-  labels:    
-  name: simple-site-ingress
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    
+  labels:
+    app: simple-site-ingress
 spec:
   rules:
-  - host: www.simple-site.be
-    http:
-      paths:
-      - backend:
-          serviceName: simple-site-svc
-          servicePort: 5000
-        path: /
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: simple-site-svc
+              servicePort: 80

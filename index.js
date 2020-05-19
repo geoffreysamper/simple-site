@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const port = 5000
 const morgan = require('morgan');
-app.use(morgan());
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use(morgan('combined'));
+app.get('/', (req, res) => res.send('Hello World!' + require('os').hostname()));
 app.get('/status', function (req, res) {
     res.send('ok a live');
 });
